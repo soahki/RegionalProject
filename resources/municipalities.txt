@@ -1,0 +1,579 @@
+Ale, O, 1440
+
+Alingsås, O, 1489
+
+Alvesta, G, 0764
+
+Aneby, F, 0604
+
+Arboga, U, 1984
+
+Arjeplog, BD, 2506
+
+Arvidsjaur, BD, 2505
+
+Arvika, S, 1784
+
+Askersund, T, 1882
+
+Avesta, W, 2084
+
+Bengtsfors, O, 1460
+
+Berg, Z, 2326
+
+Bjurholm, AC, 2403
+
+Bjuv, M, 1260
+
+Boden, BD, 2582
+
+Bollebygd, O, 1443
+
+Bollnäs, X, 2183
+
+Borgholm, H, 0885
+
+Borlänge, W, 2081
+
+Borås, O, 1490
+
+Botkyrka, AB, 0127
+
+Boxholm, E, 0560
+
+Bromölla, M, 1272
+
+Bräcke, Z, 2305
+
+Burlöv, M, 1231
+
+Båstad, M, 1278
+
+Dals-Ed, O, 1438
+
+Danderyd, AB, 0162
+
+Degerfors, T, 1862
+
+Dorotea, AC, 2425
+
+Eda, S, 1730
+
+Ekerö, AB, 0125
+
+Eksjö, F, 0686
+
+Emmaboda, H, 0862
+
+Enköping, C, 0381
+
+Eskilstuna, D, 0484
+
+Eslöv, M, 1285
+
+Essunga, O, 1445
+
+Fagersta, U, 1982
+
+Falkenberg, N, 1382
+
+Falköping, O, 1499
+
+Falun, W, 2080
+
+Filipstad, S, 1782
+
+Finspång, E, 0562
+
+Flen, D, 0482
+
+Forshaga, S, 1763
+
+Färgelanda, O, 1439
+
+Gagnef, W, 2026
+
+Gislaved, F, 0662
+
+Gnesta, D, 0461
+
+Gnosjö, F, 0617
+
+Gotland, I, 0980
+
+Grums, S, 1764
+
+Grästorp, O, 1444
+
+Gullspång, O, 1447
+
+Gällivare, BD, 2523
+
+Gävle, X, 2180
+
+Göteborg, O, 1480
+
+Götene, O, 1471
+
+Habo, F, 0643
+
+Hagfors, S, 1783
+
+Hallsberg, T, 1861
+
+Hallstahammar, U, 1961
+
+Halmstad, N, 1380
+
+Hammarö, S, 1761
+
+Haninge, AB, 0136
+
+Haparanda, BD, 2583
+
+Heby, C, 0331
+
+Hedemora, W, 2083
+
+Helsingborg, M, 1283
+
+Herrljunga, O, 1466
+
+Hjo, O, 1497
+
+Hofors, X, 2104
+
+Huddinge, AB, 0126
+
+Hudiksvall, X, 2184
+
+Hultsfred, H, 0860
+
+Hylte, N, 1315
+
+Håbo, C, 0305
+
+Hällefors, T, 1863
+
+Härjedalen, Z, 2361
+
+Härnösand, Y, 2280
+
+Härryda, O, 1401
+
+Hässleholm, M, 1293
+
+Höganäs, M, 1284
+
+Högsby, H, 0821
+
+Hörby, M, 1266
+
+Höör, M, 1267
+
+Jokkmokk, BD, 2510
+
+Järfälla, AB, 0123
+
+Jönköping, F, 0680
+
+Kalix, BD, 2514
+
+Kalmar, H, 0880
+
+Karlsborg, O, 1446
+
+Karlshamn, K, 1082
+
+Karlskoga, T, 1883
+
+Karlskrona, K, 1080
+
+Karlstad, S, 1780
+
+Katrineholm, D, 0483
+
+Kil, S, 1715
+
+Kinda, E, 0513
+
+Kiruna, BD, 2584
+
+Klippan, M, 1276
+
+Knivsta, C, 0330
+
+Kramfors, Y, 2282
+
+Kristianstad, M, 1290
+
+Kristinehamn, S, 1781
+
+Krokom, Z, 2309
+
+Kumla, T, 1881
+
+Kungsbacka, N, 1384
+
+Kungsör, U, 1960
+
+Kungälv, O, 1482
+
+Kävlinge, M, 1261
+
+Köping, U, 1983
+
+Laholm, N, 1381
+
+Landskrona, M, 1282
+
+Laxå, T, 1860
+
+Lekeberg, T, 1814
+
+Leksand, W, 2029
+
+Lerum, O, 1441
+
+Lessebo, G, 0761
+
+Lidingö, AB, 0186
+
+Lidköping, O, 1494
+
+Lilla Edet, O, 1462
+
+Lindesberg, T, 1885
+
+Linköping, E, 0580
+
+Ljungby, G, 0781
+
+Ljusdal, X, 2161
+
+Ljusnarsberg, T, 1864
+
+Lomma, M, 1262
+
+Ludvika, W, 2085
+
+Luleå, BD, 2580
+
+Lund, M, 1281
+
+Lycksele, AC, 2481
+
+Lysekil, O, 1484
+
+Malmö, M, 1280
+
+Malung, W, 2023
+
+Malå, AC, 2418
+
+Mariestad, O, 1493
+
+Mark, O, 1463
+
+Markaryd, G, 0767
+
+Mellerud, O, 1461
+
+Mjölby, E, 0586
+
+Mora, W, 2062
+
+Motala, E, 0583
+
+Mullsjö, F, 0642
+
+Munkedal, O, 1430
+
+Munkfors, S, 1762
+
+Mölndal, O, 1481
+
+Mönsterås, H, 0861
+
+Mörbylånga, H, 0840
+
+Nacka, AB, 0182
+
+Norberg, U, 1962
+
+Nora, T, 1884
+
+Nordanstig, X, 2132
+
+Nordmaling, AC, 2401
+
+Norrköping, E, 0581
+
+Norrtälje, AB, 0188
+
+Norsjö, AC, 2417
+
+Nybro, H, 0881
+
+Nykvarn, AB, 0140
+
+Nyköping, D, 0480
+
+Nynäshamn, AB, 0192
+
+Nässjö, F, 0682
+
+Ockelbo, X, 2101
+
+Olofström, K, 1060
+
+Orsa, W, 2034
+
+Orust, O, 1421
+
+Osby, M, 1273
+
+Oskarshamn, H, 0882
+
+Ovanåker, X, 2121
+
+Oxelösund, D, 0481
+
+Pajala, BD, 2521
+
+Partille, O, 1402
+
+Perstorp, M, 1275
+
+Piteå, BD, 2581
+
+Ragunda, Z, 2303
+
+Robertsfors, AC, 2409
+
+Ronneby, K, 1081
+
+Rättvik, W, 2031
+
+Sala, U, 1981
+
+Salem, AB, 0128
+
+Sandviken, X, 2181
+
+Sigtuna, AB, 0191
+
+Simrishamn, M, 1291
+
+Sjöbo, M, 1265
+
+Skara, O, 1495
+
+Skellefteå, AC, 2482
+
+Skinnskatteberg, U, 1904
+
+Skurup, M, 1264
+
+Skövde, O, 1496
+
+Smedjebacken, W, 2061
+
+Sollefteå, Y, 2283
+
+Sollentuna, AB, 0163
+
+Solna, AB, 0184
+
+Sorsele, AC, 2422
+
+Sotenäs, O, 1427
+
+Staffanstorp, M, 1230
+
+Stenungsund, O, 1415
+
+Stockholm, AB, 0180
+
+Storfors, S, 1760
+
+Storuman, AC, 2421
+
+Strängnäs, D, 0486
+
+Strömstad, O, 1486
+
+Strömsund, Z, 2313
+
+Sundbyberg, AB, 0183
+
+Sundsvall, Y, 2281
+
+Sunne, S, 1766
+
+Surahammar, U, 1907
+
+Svalöv, M, 1214
+
+Svedala, M, 1263
+
+Svenljunga, O, 1465
+
+Säffle, S, 1785
+
+Säter, W, 2082
+
+Sävsjö, F, 0684
+
+Söderhamn, X, 2182
+
+Söderköping, E, 0582
+
+Södertälje, AB, 0181
+
+Sölvesborg, K, 1083
+
+Tanum, O, 1435
+
+Tibro, O, 1472
+
+Tidaholm, O, 1498
+
+Tierp, C, 0360
+
+Timrå, Y, 2262
+
+Tingsryd, G, 0763
+
+Tjörn, O, 1419
+
+Tomelilla, M, 1270
+
+Torsby, S, 1737
+
+Torsås, H, 0834
+
+Tranemo, O, 1452
+
+Tranås, F, 0687
+
+Trelleborg, M, 1287
+
+Trollhättan, O, 1488
+
+Trosa, D, 0488
+
+Tyresö, AB, 0138
+
+Täby, AB, 0160
+
+Töreboda, O, 1473
+
+Uddevalla, O, 1485
+
+Ulricehamn, O, 1491
+
+Umeå, AC, 2480
+
+Upplands-Bro, AB, 0139
+
+Upplands Väsby, AB, 0114
+
+Uppsala, C, 0380
+
+Uppvidinge, G, 0760
+
+Vadstena, E, 0584
+
+Vaggeryd, F, 0665
+
+Valdemarsvik, E, 0563
+
+Vallentuna, AB, 0115
+
+Vansbro, W, 2021
+
+Vara, O, 1470
+
+Varberg, N, 1383
+
+Vaxholm, AB, 0187
+
+Vellinge, M, 1233
+
+Vetlanda, F, 0685
+
+Vilhelmina, AC, 2462
+
+Vimmerby, H, 0884
+
+Vindeln, AC, 2404
+
+Vingåker, D, 0428
+
+Vårgårda, O, 1442
+
+Vänersborg, O, 1487
+
+Vännäs, AC, 2460
+
+Värmdö, AB, 0120
+
+Värnamo, F, 0683
+
+Västervik, H, 0883
+
+Västerås, U, 1980
+
+Växjö, G, 0780
+
+Ydre, E, 0512
+
+Ystad, M, 1286
+
+Åmål, O, 1492
+
+Ånge, Y, 2260
+
+Åre, Z, 2321
+
+Årjäng, S, 1765
+
+Åsele, AC, 2463
+
+Åstorp, M, 1277
+
+Åtvidaberg, E, 0561
+
+Älmhult, G, 0765
+
+Älvdalen, W, 2039
+
+Älvkarleby, C, 0319
+
+Älvsbyn, BD, 2560
+
+Ängelholm, M, 1292
+
+Öckerö, O, 1407
+
+Ödeshög, E, 0509
+
+Örebro, T, 1880
+
+Örkelljunga, M, 1257
+
+Örnsköldsvik, Y, 2284
+
+Östersund, Z, 2380
+
+Österåker, AB, 0117
+
+Östhammar, C, 0382
+
+Östra Göinge, M, 1256
+
+Överkalix, BD, 2513
+
+Övertorneå, BD, 2518
