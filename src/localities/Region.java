@@ -11,4 +11,12 @@ public class Region {
         this.name = name;
         this.regionCode = regionCode;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getRegionCode() {
+        return regionCode;
+    }
 }

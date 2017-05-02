@@ -13,4 +13,23 @@ public class Municipality {
         this.municipalityCode = municipalityCode;
         this.regionCode = regionCode;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getMunicipalityCode() {
+        return municipalityCode;
+    }
+
+    public String getRegionCode() {
+        return regionCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Municipality{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
