@@ -7,9 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by abjor on 2017-05-02.
+ * Read txt-file to parse Municipality-objects from it. The txt is set up with name, region code and municipality code,
+ * separted by comma. The class contains the static method getMunicipalities which returns a List of Municipality-objects,
+ * from the passed path (String).
  */
 public class ParseMunicipalities {
+
+    /**
+     * Parses Municipality-objects from the passed String path to a text-file. The text-file should be set up accordingly:
+     * [String name], [String regionCode], [String municipalityCode]
+     * ...
+     * Returns a List of Municipality-objects.
+     * @param path
+     * @return
+     */
     public static List<Municipality> getMunicipalities(String path) {
         List<Municipality> municipalities = new ArrayList<>();
 

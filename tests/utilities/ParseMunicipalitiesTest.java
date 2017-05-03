@@ -10,9 +10,6 @@ import java.util.regex.Pattern;
 
 import static org.junit.Assert.*;
 
-/**
- * Created by abjor on 2017-05-02.
- */
 public class ParseMunicipalitiesTest {
     private List<Municipality> municipalities;
 
