@@ -19,4 +19,11 @@ public class Region {
     public String getRegionCode() {
         return regionCode;
     }
+
+    @Override
+    public String toString() {
+        return "Region{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
