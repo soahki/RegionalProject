@@ -20,6 +20,13 @@ public class AdministrativeZonesTest {
 
     @Test
     public void municipalityIsPairedWithCorrectRegion() throws Exception {
-        
+        boolean isCorrect = true;
+        for (Region reg : zones.getRegionMap().keySet()) {
+            if (!reg.getRegionCode().equals(zones.getRegionMap().get(reg).get(0).getRegionCode())) {
+                isCorrect = false;
+            }
+        }
+
+        assertTrue(isCorrect);
     }
 }

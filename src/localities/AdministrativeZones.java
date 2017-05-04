@@ -3,16 +3,13 @@ package localities;
 import utilities.ParseMunicipalities;
 import utilities.ParseRegions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AdministrativeZones {
-    private Map<Region, List<Municipality>> regionListMap;
+    private Map<Region, List<Municipality>> regionMap;
 
     public AdministrativeZones() {
-        this.regionListMap = new HashMap<>();
+        this.regionMap = new TreeMap<>();
         createRegionListMap();
     }
 
@@ -21,16 +18,28 @@ public class AdministrativeZones {
         List<Region> regions = ParseRegions.getRegions("resources\\regions.txt");
 
         for (Region region : regions) {
-            regionListMap.put(region, new ArrayList<>());
+            regionMap.put(region, new ArrayList<>());
             for (Municipality municipality : municipalities) {
                 if (municipality.getRegionCode().equals(region.getRegionCode())) {
-                    regionListMap.get(region).add(municipality);
+                    regionMap.get(region).add(municipality);
                 }
             }
         }
     }
 
-    public Map<Region, List<Municipality>> getRegionListMap() {
-        return regionListMap;
+    public Map<Region, List<Municipality>> getRegionMap() {
+        return regionMap;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        for (Region region : regionMap.keySet()) {
+            builder.append("\n" + region.getName() + " (" + region.getRegionCode() + "): \n");
+            for (Municipality municipality : regionMap.get(region)) {
+                builder.append("    " + municipality.getName() + "\n");
+            }
+        }
+        return builder.toString();
     }
 }
