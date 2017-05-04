@@ -15,7 +15,7 @@ public class ParseMunicipalitiesTest {
 
     @Before
     public void setUp() throws Exception {
-        municipalities = ParseMunicipalities.getMunicipalities("resources\\municipalities.txt");
+        municipalities = ParseMunicipalities.getMunicipalities("resources\\localities\\municipalities.txt");
     }
 
     @Test

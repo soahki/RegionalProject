@@ -13,7 +13,7 @@ public class ParseRegionsTest {
 
     @Before
     public void setUp() throws Exception {
-        regions = ParseRegions.getRegions("resources\\regions.txt");
+        regions = ParseRegions.getRegions("resources\\localities\\regions.txt");
     }
 
     @Test
