@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
 import javafx.scene.Parent;
@@ -33,12 +34,15 @@ public class Home extends Application {
         primaryStage.show();
     }
 
+    
     private void setUpButtons(Group root) {
         GridPane grid = new GridPane();
         Button[] regionButtons = regionButtons();
 
         int row = 0;
         int column = 0;
+
+        // Set up the buttons in a 5 column grid.
         for (int i = 0; i < regionButtons.length; i++) {
             grid.add(regionButtons[i], column, row);
             column++;
