@@ -11,9 +11,6 @@
             fx:controller="sample.Controller"
             stylesheets="/css/sample.css"
             prefHeight="400.0" prefWidth="600.0">
-    <Button text="TESTING!"
-            onAction="#handleTesting"
-            GridPane.rowIndex="2"
-            GridPane.columnIndex="2" />
+
 
 </GridPane>
