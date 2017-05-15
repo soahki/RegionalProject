@@ -1,14 +1,10 @@
-package sample;
+package userInterface;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
@@ -17,7 +13,7 @@ import localities.Region;
 import java.util.List;
 import java.util.Map;
 
-public class Home extends Application {
+public class UserInterface extends Application {
     private static Map<Region, List<Municipality>> regionMap = new AdministrativeZones().getRegionMap();
     private static final double BUTTON_WIDTH = 120;
     private static final double BUTTON_HEIGHT = 50;
@@ -29,12 +25,12 @@ public class Home extends Application {
 
         setUpButtons(root);
 
-        primaryStage.setTitle("TEST of interface");
+        primaryStage.setTitle("Regioner i Sverige");
         primaryStage.setScene(new Scene(root, BUTTON_WIDTH * 5, BUTTON_HEIGHT * 5));
         primaryStage.show();
     }
 
-    
+
     private void setUpButtons(Group root) {
         GridPane grid = new GridPane();
         Button[] regionButtons = regionButtons();
@@ -63,13 +59,17 @@ public class Home extends Application {
             buttons[i].setPrefHeight(BUTTON_HEIGHT);
             buttons[i].setOnAction(event -> {
                 System.out.println(region);
+                for(Municipality municipality : regionMap.get(region)) {
+                    System.out.println(municipality);
+                }
             });
             i++;
         }
         return buttons;
     }
 
-    public static void main(String[] args) {
+    public static void launchUI(String[] args) {
         launch(args);
     }
+
 }
