@@ -20,20 +20,58 @@ public class UserInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource("/fxml/sample.fxml"));
+        displayPrimaryScene(primaryStage);
+    }
+
+    private void displayPrimaryScene(Stage primaryStage) {
         Group root = new Group();
 
-        setUpButtons(root);
+        setUpRegionButtons(root, primaryStage);
 
         primaryStage.setTitle("Regioner i Sverige");
         primaryStage.setScene(new Scene(root, BUTTON_WIDTH * 5, BUTTON_HEIGHT * 5));
         primaryStage.show();
     }
 
-
-    private void setUpButtons(Group root) {
+    private Scene getMunicipalityScene(Region region, Stage stage) {
+        Group branch = new Group();
         GridPane grid = new GridPane();
-        Button[] regionButtons = regionButtons();
+        Button[] municipalityButtons = municipalityButtons(region);
+
+        int row = 0;
+        int column = 0;
+
+        // Set up the buttons in a 5 column grid.
+        for (int i = 0; i < municipalityButtons.length; i++) {
+            grid.add(municipalityButtons[i], column, row);
+            column++;
+            if ((i + 1) % 5 == 0) {
+                row++;
+                column = 0;
+            }
+        }
+        Button back = new Button("Return to regions");
+        back.setOnAction(event -> displayPrimaryScene(stage));
+        grid.add(back, 0, ++row);
+        branch.getChildren().add(grid);
+        return new Scene(branch);
+    }
+
+    private Button[] municipalityButtons(Region region) {
+        Button[] buttons = new Button[regionMap.get(region).size()];
+        int i = 0;
+        for (Municipality municipality : regionMap.get(region)) {
+            buttons[i] = new Button(municipality.getName());
+            buttons[i].setPrefSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+            i++;
+        }
+
+        return buttons;
+    }
+
+    private void setUpRegionButtons(Group root, Stage stage) {
+        GridPane grid = new GridPane();
+        Button[] regionButtons = regionButtons(stage);
 
         int row = 0;
         int column = 0;
@@ -47,10 +85,11 @@ public class UserInterface extends Application {
                 column = 0;
             }
         }
+
         root.getChildren().add(grid);
     }
 
-    private Button[] regionButtons() {
+    private Button[] regionButtons(Stage stage) {
         Button[] buttons = new Button[regionMap.keySet().size()];
         int i = 0;
         for (Region region : regionMap.keySet()) {
@@ -58,10 +97,9 @@ public class UserInterface extends Application {
             buttons[i].setPrefWidth(BUTTON_WIDTH);
             buttons[i].setPrefHeight(BUTTON_HEIGHT);
             buttons[i].setOnAction(event -> {
-                System.out.println(region);
-                for(Municipality municipality : regionMap.get(region)) {
-                    System.out.println(municipality);
-                }
+                stage.setTitle("Kommuner i " + region.getName());
+                stage.setScene(getMunicipalityScene(region, stage));
+                stage.show();
             });
             i++;
         }
