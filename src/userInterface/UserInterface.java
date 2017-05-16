@@ -1,6 +1,7 @@
 package userInterface;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,16 +27,20 @@ public class UserInterface extends Application {
     private void displayPrimaryScene(Stage primaryStage) {
         Group root = new Group();
 
-        setUpRegionButtons(root, primaryStage);
+        setUpRegionScene(root, primaryStage);
 
         primaryStage.setTitle("Regioner i Sverige");
-        primaryStage.setScene(new Scene(root, BUTTON_WIDTH * 5, BUTTON_HEIGHT * 5));
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
-    private Scene getMunicipalityScene(Region region, Stage stage) {
+    private void displayMunicipalityScene(Region region, Stage stage) {
         Group branch = new Group();
         GridPane grid = new GridPane();
+        grid.setStyle("-fx-background-color: #ABABAB");
+        grid.setPadding(new Insets(5));
+        grid.setHgap(5);
+        grid.setVgap(5);
         Button[] municipalityButtons = municipalityButtons(region);
 
         int row = 0;
@@ -50,11 +55,15 @@ public class UserInterface extends Application {
                 column = 0;
             }
         }
+
         Button back = new Button("Return to regions");
+        back.setStyle("-fx-base: #38C5FF");
         back.setOnAction(event -> displayPrimaryScene(stage));
         grid.add(back, 0, ++row);
         branch.getChildren().add(grid);
-        return new Scene(branch);
+        stage.setTitle("Kommuner i " + region.getName());
+        stage.setScene(new Scene(branch));
+        stage.show();
     }
 
     private Button[] municipalityButtons(Region region) {
@@ -69,8 +78,12 @@ public class UserInterface extends Application {
         return buttons;
     }
 
-    private void setUpRegionButtons(Group root, Stage stage) {
+    private void setUpRegionScene(Group root, Stage stage) {
         GridPane grid = new GridPane();
+        grid.setStyle("-fx-background-color: #ABABAB");
+        grid.setPadding(new Insets(5));
+        grid.setHgap(5);
+        grid.setVgap(5);
         Button[] regionButtons = regionButtons(stage);
 
         int row = 0;
@@ -96,11 +109,7 @@ public class UserInterface extends Application {
             buttons[i] = new Button(region.getName());
             buttons[i].setPrefWidth(BUTTON_WIDTH);
             buttons[i].setPrefHeight(BUTTON_HEIGHT);
-            buttons[i].setOnAction(event -> {
-                stage.setTitle("Kommuner i " + region.getName());
-                stage.setScene(getMunicipalityScene(region, stage));
-                stage.show();
-            });
+            buttons[i].setOnAction(event -> displayMunicipalityScene(region, stage));
             i++;
         }
         return buttons;
