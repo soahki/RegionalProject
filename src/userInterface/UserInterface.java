@@ -6,6 +6,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
@@ -36,11 +37,12 @@ public class UserInterface extends Application {
 
     private void displayMunicipalityScene(Region region, Stage stage) {
         Group branch = new Group();
-        GridPane grid = new GridPane();
-        grid.setStyle("-fx-background-color: #ABABAB");
-        grid.setPadding(new Insets(5));
-        grid.setHgap(5);
-        grid.setVgap(5);
+        HBox hBox = new HBox(5);
+        GridPane buttonGrid = new GridPane();
+        buttonGrid.setStyle("-fx-background-color: #ABABAB");
+        buttonGrid.setPadding(new Insets(5));
+        buttonGrid.setHgap(5);
+        buttonGrid.setVgap(5);
         Button[] municipalityButtons = municipalityButtons(region);
 
         int row = 0;
@@ -48,7 +50,7 @@ public class UserInterface extends Application {
 
         // Set up the buttons in a 5 column grid.
         for (int i = 0; i < municipalityButtons.length; i++) {
-            grid.add(municipalityButtons[i], column, row);
+            buttonGrid.add(municipalityButtons[i], column, row);
             column++;
             if ((i + 1) % 5 == 0) {
                 row++;
@@ -59,8 +61,10 @@ public class UserInterface extends Application {
         Button back = new Button("Return to regions");
         back.setStyle("-fx-base: #38C5FF");
         back.setOnAction(event -> displayPrimaryScene(stage));
-        grid.add(back, 0, ++row);
-        branch.getChildren().add(grid);
+        buttonGrid.add(back, 0, ++row);
+        hBox.getChildren().add(OverviewMap.getMap("AB"));
+        hBox.getChildren().add(buttonGrid);
+        branch.getChildren().add(hBox);
         stage.setTitle("Kommuner i " + region.getName());
         stage.setScene(new Scene(branch));
         stage.show();
