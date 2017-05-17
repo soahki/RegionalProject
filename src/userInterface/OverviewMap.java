@@ -17,7 +17,7 @@ class OverviewMap {
 
         Image swedenImage = new Image(swedenFile.toURI().toString(), 300.0, 500.0, true, true);
         Image abImage = new Image(regionFile.toURI().toString(), 300.0, 500.0, true, true);
-        WritableImage wImage = ColorChanger.colorImage(abImage, Color.WHITE, Color.BLACK);
+        WritableImage wImage = ColorChanger.colorImage(abImage, Color.WHITE, Color.BLUE);
 
         // Display image on screen
         StackPane map = new StackPane();

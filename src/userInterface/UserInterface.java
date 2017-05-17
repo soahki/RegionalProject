@@ -62,7 +62,7 @@ public class UserInterface extends Application {
         back.setStyle("-fx-base: #38C5FF");
         back.setOnAction(event -> displayPrimaryScene(stage));
         buttonGrid.add(back, 0, ++row);
-        hBox.getChildren().add(OverviewMap.getMap("AB"));
+        hBox.getChildren().add(OverviewMap.getMap(region.getRegionCode()));
         hBox.getChildren().add(buttonGrid);
         branch.getChildren().add(hBox);
         stage.setTitle("Kommuner i " + region.getName());
