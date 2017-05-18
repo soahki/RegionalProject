@@ -83,6 +83,7 @@ public class UserInterface extends Application {
     }
 
     private void setUpRegionScene(Group root, Stage stage) {
+        HBox box = new HBox(5);
         GridPane grid = new GridPane();
         grid.setStyle("-fx-background-color: #ABABAB");
         grid.setPadding(new Insets(5));
@@ -92,7 +93,6 @@ public class UserInterface extends Application {
 
         int row = 0;
         int column = 0;
-
         // Set up the buttons in a 5 column grid.
         for (int i = 0; i < regionButtons.length; i++) {
             grid.add(regionButtons[i], column, row);
@@ -103,7 +103,9 @@ public class UserInterface extends Application {
             }
         }
 
-        root.getChildren().add(grid);
+        box.getChildren().add(OverviewMap.getMap());
+        box.getChildren().add(grid);
+        root.getChildren().add(box);
     }
 
     private Button[] regionButtons(Stage stage) {
