@@ -12,8 +12,8 @@ import java.io.File;
 class OverviewMap {
     static StackPane getMap(String regionCode) {
         // Create Image and ImageView objects
-        File swedenFile = new File("C:\\Users\\abjor\\Documents\\Programming\\RegionalProject\\resources\\images\\Sweden_exempel.png");
-        File regionFile = new File("C:\\Users\\abjor\\Documents\\Programming\\RegionalProject\\resources\\images\\regions\\" + regionCode + ".png");
+        File swedenFile = new File("./resources/images/Sweden_exempel.png");
+        File regionFile = new File("./resources/images/regions/" + regionCode + ".png");
 
         Image swedenImage = new Image(swedenFile.toURI().toString(), 300.0, 500.0, true, true);
         Image abImage = new Image(regionFile.toURI().toString(), 300.0, 500.0, true, true);
