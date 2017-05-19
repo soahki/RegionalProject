@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
@@ -28,7 +29,7 @@ public class UserInterface extends Application {
     private void displayPrimaryScene(Stage primaryStage) {
         Group root = new Group();
 
-        setUpRegionScene(root, primaryStage);
+        setupRegionScene(root, primaryStage);
 
         primaryStage.setTitle("Regioner i Sverige");
         primaryStage.setScene(new Scene(root));
@@ -38,36 +39,38 @@ public class UserInterface extends Application {
     private void displayMunicipalityScene(Region region, Stage stage) {
         Group branch = new Group();
         HBox hBox = new HBox(5);
-        GridPane buttonGrid = new GridPane();
-        buttonGrid.setStyle("-fx-background-color: #ABABAB");
-        buttonGrid.setPadding(new Insets(5));
-        buttonGrid.setHgap(5);
-        buttonGrid.setVgap(5);
+
         Button[] municipalityButtons = municipalityButtons(region);
-
-        int row = 0;
-        int column = 0;
-
-        // Set up the buttons in a 5 column grid.
-        for (int i = 0; i < municipalityButtons.length; i++) {
-            buttonGrid.add(municipalityButtons[i], column, row);
-            column++;
-            if ((i + 1) % 5 == 0) {
-                row++;
-                column = 0;
-            }
-        }
+        GridPane buttonGrid = styleButtons(municipalityButtons);
 
         Button back = new Button("Return to regions");
         back.setStyle("-fx-base: #38C5FF");
         back.setOnAction(event -> displayPrimaryScene(stage));
-        buttonGrid.add(back, 0, ++row);
+
+        VBox vBox = new VBox(5);
+        vBox.getChildren().add(buttonGrid);
+        vBox.getChildren().add(back);
+
         hBox.getChildren().add(OverviewMap.getMap(region.getRegionCode()));
-        hBox.getChildren().add(buttonGrid);
+        hBox.getChildren().add(vBox);
         branch.getChildren().add(hBox);
+
         stage.setTitle("Kommuner i " + region.getName());
         stage.setScene(new Scene(branch));
         stage.show();
+    }
+
+    private Button[] regionButtons(Stage stage) {
+        Button[] buttons = new Button[regionMap.keySet().size()];
+        int i = 0;
+        for (Region region : regionMap.keySet()) {
+            buttons[i] = new Button(region.getName());
+            buttons[i].setPrefWidth(BUTTON_WIDTH);
+            buttons[i].setPrefHeight(BUTTON_HEIGHT);
+            buttons[i].setOnAction(event -> displayMunicipalityScene(region, stage));
+            i++;
+        }
+        return buttons;
     }
 
     private Button[] municipalityButtons(Region region) {
@@ -82,43 +85,39 @@ public class UserInterface extends Application {
         return buttons;
     }
 
-    private void setUpRegionScene(Group root, Stage stage) {
-        HBox box = new HBox(5);
-        GridPane grid = new GridPane();
-        grid.setStyle("-fx-background-color: #ABABAB");
-        grid.setPadding(new Insets(5));
-        grid.setHgap(5);
-        grid.setVgap(5);
-        Button[] regionButtons = regionButtons(stage);
+    private GridPane styleButtons(Button[] buttons) {
+        // Initialize GridPane instance
+        GridPane gridPane = new GridPane();
 
+        // Set basic style
+        gridPane.setStyle("-fx-background-color: #ABABAB");
+        gridPane.setPadding(new Insets(5));
+        gridPane.setHgap(5);
+        gridPane.setVgap(5);
+
+        // Add buttons to a 5*n grid.
         int row = 0;
         int column = 0;
-        // Set up the buttons in a 5 column grid.
-        for (int i = 0; i < regionButtons.length; i++) {
-            grid.add(regionButtons[i], column, row);
+        for (int i = 0; i < buttons.length; i++) {
+            gridPane.add(buttons[i], column, row);
             column++;
             if ((i + 1) % 5 == 0) {
                 row++;
                 column = 0;
             }
         }
+        return gridPane;
+    }
+
+    private void setupRegionScene(Group root, Stage stage) {
+        HBox box = new HBox(5);
+
+        Button[] regionButtons = regionButtons(stage);
+        GridPane grid = styleButtons(regionButtons);
 
         box.getChildren().add(OverviewMap.getMap());
         box.getChildren().add(grid);
         root.getChildren().add(box);
-    }
-
-    private Button[] regionButtons(Stage stage) {
-        Button[] buttons = new Button[regionMap.keySet().size()];
-        int i = 0;
-        for (Region region : regionMap.keySet()) {
-            buttons[i] = new Button(region.getName());
-            buttons[i].setPrefWidth(BUTTON_WIDTH);
-            buttons[i].setPrefHeight(BUTTON_HEIGHT);
-            buttons[i].setOnAction(event -> displayMunicipalityScene(region, stage));
-            i++;
-        }
-        return buttons;
     }
 
     public static void launchUI(String[] args) {
