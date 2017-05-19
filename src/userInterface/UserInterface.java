@@ -20,23 +20,21 @@ public class UserInterface extends Application {
     private static Map<Region, List<Municipality>> regionMap = new AdministrativeZones().getRegionMap();
     private static final double BUTTON_WIDTH = 120;
     private static final double BUTTON_HEIGHT = 50;
+    private Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        displayPrimaryScene(primaryStage);
+        this.primaryStage = primaryStage;
+        displayScene("Regioner i Sverige", getRegionScene());
     }
 
-    private void displayPrimaryScene(Stage primaryStage) {
-        Group root = new Group();
-
-        setupRegionScene(root, primaryStage);
-
-        primaryStage.setTitle("Regioner i Sverige");
-        primaryStage.setScene(new Scene(root));
+    private void displayScene(String title, Scene scene) {
+        primaryStage.setTitle(title);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    private void displayMunicipalityScene(Region region, Stage stage) {
+    private Scene getMunicipalityScene(Region region) {
         Group branch = new Group();
         HBox hBox = new HBox(5);
 
@@ -45,7 +43,7 @@ public class UserInterface extends Application {
 
         Button back = new Button("Return to regions");
         back.setStyle("-fx-base: #38C5FF");
-        back.setOnAction(event -> displayPrimaryScene(stage));
+        back.setOnAction(event -> displayScene("Län i Sverige", getRegionScene()));
 
         VBox vBox = new VBox(5);
         vBox.getChildren().add(buttonGrid);
@@ -55,19 +53,29 @@ public class UserInterface extends Application {
         hBox.getChildren().add(vBox);
         branch.getChildren().add(hBox);
 
-        stage.setTitle("Kommuner i " + region.getName());
-        stage.setScene(new Scene(branch));
-        stage.show();
+        return new Scene(branch);
     }
 
-    private Button[] regionButtons(Stage stage) {
+    private Scene getRegionScene() {
+        HBox hBox = new HBox(5);
+
+        Button[] regionButtons = regionButtons();
+        GridPane grid = styleButtons(regionButtons);
+
+        hBox.getChildren().add(OverviewMap.getMap());
+        hBox.getChildren().add(grid);
+        return new Scene(hBox);
+    }
+
+    private Button[] regionButtons() {
         Button[] buttons = new Button[regionMap.keySet().size()];
         int i = 0;
         for (Region region : regionMap.keySet()) {
             buttons[i] = new Button(region.getName());
             buttons[i].setPrefWidth(BUTTON_WIDTH);
             buttons[i].setPrefHeight(BUTTON_HEIGHT);
-            buttons[i].setOnAction(event -> displayMunicipalityScene(region, stage));
+            buttons[i].setOnAction(event ->
+                    displayScene("Kommuner i " + region.getName(), getMunicipalityScene(region)));
             i++;
         }
         return buttons;
@@ -107,17 +115,6 @@ public class UserInterface extends Application {
             }
         }
         return gridPane;
-    }
-
-    private void setupRegionScene(Group root, Stage stage) {
-        HBox box = new HBox(5);
-
-        Button[] regionButtons = regionButtons(stage);
-        GridPane grid = styleButtons(regionButtons);
-
-        box.getChildren().add(OverviewMap.getMap());
-        box.getChildren().add(grid);
-        root.getChildren().add(box);
     }
 
     public static void launchUI(String[] args) {
