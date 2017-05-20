@@ -62,7 +62,10 @@ public class UserInterface extends Application {
         Button[] regionButtons = regionButtons();
         GridPane grid = styleButtons(regionButtons);
 
-        hBox.getChildren().add(OverviewMap.getMap());
+        NumberOfMunicipalitiesFilter filter = new NumberOfMunicipalitiesFilter(regionMap);
+
+        // hBox.getChildren().add(OverviewMap.getMap());
+        hBox.getChildren().add(filter.getFilteredImages());
         hBox.getChildren().add(grid);
         return new Scene(hBox);
     }
