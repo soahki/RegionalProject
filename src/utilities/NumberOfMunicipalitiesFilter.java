@@ -20,17 +20,15 @@ public class NumberOfMunicipalitiesFilter implements Filter {
     @Override
     public StackPane getFilteredImages() {
         StackPane stackPane = new StackPane();
-        //Set<ImageView> images = new HashSet<>();
         ImageView[] images = new ImageView[regionMap.keySet().size()];
         Thread[] threads = new Thread[regionMap.keySet().size()];
         int i = 0;
         for (Region region : regionMap.keySet()) {
-            int index = i;
+            int index = i;  // Appoint each Runnable a unique number where its rendered image will be inserted in the ImageView array.
             Runnable renderer = () -> {
                 File file = new File("./resources/images/regions/" + region.getRegionCode() + ".png");
                 ImageView image = MapGenerator.getColoredImage(
                         file, getColorFromRegions(region), new Dimension2D(300, 500));
-                //images.add(image);
                 images[index] = image;
             };
             threads[i] = new Thread(renderer);
@@ -40,6 +38,7 @@ public class NumberOfMunicipalitiesFilter implements Filter {
             thread.start();
         }
 
+        // Assure that all images are rendered before adding them to a StackPane.
         while (true) {
             int numRunning = 0;
             for (Thread thread : threads) {
@@ -62,11 +61,15 @@ public class NumberOfMunicipalitiesFilter implements Filter {
         return stackPane;
     }
 
-    public Color getColorFromRegions(Region region) {
-        int red = 50 + 4 * (regionMap.get(region).size());
+    private Color getColorFromRegions(Region region) {
+        int red = 50 + 5 * (regionMap.get(region).size());
         if (red > 255)
             red = 255;
         return Color.rgb(red, 0, 0);
     }
 
+    @Override
+    public String toString() {
+        return "Filter: Antal kommuner i ett län";
+    }
 }

@@ -5,6 +5,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -12,8 +13,10 @@ import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
+import utilities.Filter;
 import utilities.MapGenerator;
 import utilities.NumberOfMunicipalitiesFilter;
+import utilities.StandardFilter;
 
 import java.util.List;
 import java.util.Map;
@@ -23,6 +26,7 @@ public class UserInterface extends Application {
     private static final double BUTTON_WIDTH = 120;
     private static final double BUTTON_HEIGHT = 50;
     private Stage primaryStage;
+    private Filter filter = new StandardFilter();
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -64,12 +68,27 @@ public class UserInterface extends Application {
         Button[] regionButtons = regionButtons();
         GridPane grid = styleButtons(regionButtons);
 
-        NumberOfMunicipalitiesFilter filter = new NumberOfMunicipalitiesFilter(regionMap);
+        VBox vBox = new VBox(5);
+        vBox.getChildren().add(filter.getFilteredImages());
+        vBox.getChildren().add(filterComboBox());
 
-        // hBox.getChildren().add(MapGenerator.getMap());
-        hBox.getChildren().add(filter.getFilteredImages());
+        hBox.getChildren().add(vBox);
         hBox.getChildren().add(grid);
         return new Scene(hBox);
+    }
+
+    private ComboBox filterComboBox() {
+        ComboBox<Filter> filterComboBox = new ComboBox<>();
+        Filter filterItem = new NumberOfMunicipalitiesFilter(regionMap);
+        Filter standardItem = new StandardFilter();
+        filterComboBox.getItems().add(standardItem);
+        filterComboBox.getItems().add(filterItem);
+        filterComboBox.setOnAction( event -> {
+            filter = filterComboBox.getSelectionModel().getSelectedItem();
+            String title = filterComboBox.getSelectionModel().getSelectedItem().toString();
+            displayScene(title, getRegionScene());
+        });
+        return filterComboBox;
     }
 
     private Button[] regionButtons() {
