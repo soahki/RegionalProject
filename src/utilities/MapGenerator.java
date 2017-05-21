@@ -1,4 +1,4 @@
-package userInterface;
+package utilities;
 
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.Image;
@@ -6,12 +6,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import utilities.ColorChanger;
 
 import java.io.File;
 
-public class OverviewMap {
-    protected static StackPane getMap(String regionCode) {
+public class MapGenerator {
+    public static StackPane getMap(String regionCode) {
         // Create Image
         File swedenFile = new File("./resources/images/Sweden_exempel.png");
         Image swedenImage = new Image(swedenFile.toURI().toString(), 300.0, 500.0, true, true);

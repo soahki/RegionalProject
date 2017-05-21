@@ -1,7 +1,6 @@
-package userInterface;
+package utilities;
 
 import javafx.geometry.Dimension2D;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
@@ -29,7 +28,7 @@ public class NumberOfMunicipalitiesFilter implements Filter {
             int index = i;
             Runnable renderer = () -> {
                 File file = new File("./resources/images/regions/" + region.getRegionCode() + ".png");
-                ImageView image = OverviewMap.getColoredImage(
+                ImageView image = MapGenerator.getColoredImage(
                         file, getColorFromRegions(region), new Dimension2D(300, 500));
                 //images.add(image);
                 images[index] = image;
@@ -54,7 +53,7 @@ public class NumberOfMunicipalitiesFilter implements Filter {
             }
 
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

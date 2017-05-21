@@ -1,4 +1,4 @@
-package userInterface;
+package utilities;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;

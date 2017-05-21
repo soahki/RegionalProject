@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
+import utilities.MapGenerator;
+import utilities.NumberOfMunicipalitiesFilter;
 
 import java.util.List;
 import java.util.Map;
@@ -49,7 +51,7 @@ public class UserInterface extends Application {
         vBox.getChildren().add(buttonGrid);
         vBox.getChildren().add(back);
 
-        hBox.getChildren().add(OverviewMap.getMap(region.getRegionCode()));
+        hBox.getChildren().add(MapGenerator.getMap(region.getRegionCode()));
         hBox.getChildren().add(vBox);
         branch.getChildren().add(hBox);
 
@@ -64,7 +66,7 @@ public class UserInterface extends Application {
 
         NumberOfMunicipalitiesFilter filter = new NumberOfMunicipalitiesFilter(regionMap);
 
-        // hBox.getChildren().add(OverviewMap.getMap());
+        // hBox.getChildren().add(MapGenerator.getMap());
         hBox.getChildren().add(filter.getFilteredImages());
         hBox.getChildren().add(grid);
         return new Scene(hBox);
