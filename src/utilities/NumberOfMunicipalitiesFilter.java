@@ -19,7 +19,7 @@ public class NumberOfMunicipalitiesFilter implements Filter {
 
     @Override
     public StackPane getFilteredImages() {
-        StackPane stackPane = new StackPane();
+        StackPane stackPane = MapGenerator.getMap();
         ImageView[] images = new ImageView[regionMap.keySet().size()];
         Thread[] threads = new Thread[regionMap.keySet().size()];
         int i = 0;
