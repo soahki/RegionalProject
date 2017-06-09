@@ -13,10 +13,10 @@ import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
-import utilities.Filter;
+import utilities.filter.Filter;
 import utilities.MapGenerator;
-import utilities.NumberOfMunicipalitiesFilter;
-import utilities.StandardFilter;
+import utilities.filter.NumberOfMunicipalitiesFilter;
+import utilities.filter.StandardFilter;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package utilities;
+package utilities.filter;
 
 import javafx.geometry.Dimension2D;
 import javafx.scene.image.ImageView;
@@ -6,6 +6,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
+import utilities.MapGenerator;
+import utilities.filter.Filter;
 
 import java.io.File;
 import java.util.*;

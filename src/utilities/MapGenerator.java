@@ -27,7 +27,7 @@ public class MapGenerator {
         return map;
     }
 
-    protected static StackPane getMap() {
+    public static StackPane getMap() {
         return getMap("");
     }
 

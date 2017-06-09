@@ -1,4 +1,4 @@
-package utilities;
+package utilities.filter;
 
 import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
