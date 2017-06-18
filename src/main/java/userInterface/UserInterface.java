@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
+import utilities.JDBCRunner;
 import utilities.filter.Filter;
 import utilities.MapGenerator;
 import utilities.filter.NumberOfMunicipalitiesFilter;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 public class UserInterface extends Application {
-    private static Map<Region, List<Municipality>> regionMap = new AdministrativeZones().getRegionMap();
+    private static Map<Region, List<Municipality>> regionMap;
     private static final double BUTTON_WIDTH = 120;
     private static final double BUTTON_HEIGHT = 50;
     private Stage primaryStage;
@@ -30,6 +31,7 @@ public class UserInterface extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        regionMap = JDBCRunner.getMap();
         this.primaryStage = primaryStage;
         displayScene("Regioner i Sverige", getRegionScene());
     }

@@ -46,6 +46,7 @@ public class JDBCRunner {
 
             // Fill tables with content
             for (Region region : localities.keySet()) {
+                System.out.println(region.getName());
                 insertRegion(statement, region);
                 for (Municipality municipality : localities.get(region)) {
                     insertMunicipality(statement, municipality);
