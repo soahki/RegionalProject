@@ -4,10 +4,9 @@ import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class JDBCRunner {
 
             // Create municipality table
             statement.executeUpdate("DROP TABLE IF EXISTS municipalities");
-            statement.executeUpdate("CREATE TABLE regions(id INTEGER PRIMARY KEY, region_code STRING, municipality_code STRING, name STRING)");
+            statement.executeUpdate("CREATE TABLE municipalities(id INTEGER PRIMARY KEY, region_code STRING, municipality_code STRING, name STRING)");
 
             // Fill tables with content
             for (Region region : localities.keySet()) {
@@ -56,6 +55,55 @@ public class JDBCRunner {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static Map<Region, List<Municipality>> getMap() throws ClassNotFoundException {
+        Class.forName("org.sqlite.JDBC");
+
+        Map<Region, List<Municipality>> regionMap = new HashMap<>();
+
+        try(Connection connection = DriverManager.getConnection("jdbc:sqlite:regionaldata.db")) {
+            Statement statement = connection.createStatement();
+
+            List<Region> regions = getRegions(statement);
+            List<Municipality> municipalities = getMunicipalities(statement);
+
+            // Pair municipalities with regions in a map
+            for (Region region : regions) {
+                regionMap.put(region, new ArrayList<>());
+                for (Municipality municipality : municipalities) {
+                    if (region.getRegionCode().equals(municipality.getRegionCode())){
+                        regionMap.get(region).add(municipality);
+                    }
+                }
+            }
+        } catch(SQLException ex) {
+            ex.printStackTrace();
+        }
+        return regionMap;
+    }
+
+    private static List<Region> getRegions(Statement statement) throws SQLException {
+        List<Region> regions = new ArrayList<>();
+        ResultSet rs = statement.executeQuery("SELECT * FROM regions");
+        while (rs.next()) {
+            String name = rs.getString("name");
+            String regionCode = rs.getString("region_code");
+            regions.add(new Region(name, regionCode));
+        }
+        return regions;
+    }
+
+    private static List<Municipality> getMunicipalities(Statement statement) throws SQLException {
+        List<Municipality> municipalities = new ArrayList<>();
+        ResultSet rs = statement.executeQuery("SELECT * FROM municipalities");
+        while (rs.next()) {
+            String name = rs.getString("name");
+            String regionCode = rs.getString("region_code");
+            String municipalityCode = rs.getString("municipality_code");
+            municipalities.add(new Municipality(name, municipalityCode, regionCode));
+        }
+        return municipalities;
     }
 
     private static void insertRegion(Statement statement, Region region) throws SQLException {
