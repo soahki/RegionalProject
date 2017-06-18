@@ -14,8 +14,8 @@ public class AdministrativeZones {
     }
 
     private void createRegionListMap() {
-        List<Municipality> municipalities = ParseMunicipalities.getMunicipalities("resources\\localities\\municipalities.txt");
-        List<Region> regions = ParseRegions.getRegions("resources\\localities\\regions.txt");
+        List<Municipality> municipalities = ParseMunicipalities.getMunicipalities("./src/main/resources/localities/municipalities.txt");
+        List<Region> regions = ParseRegions.getRegions("./src/main/resources/localities/regions.txt");
 
         for (Region region : regions) {
             regionMap.put(region, new ArrayList<>());

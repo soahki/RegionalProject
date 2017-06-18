@@ -28,7 +28,7 @@ public class NumberOfMunicipalitiesFilter implements Filter {
         for (Region region : regionMap.keySet()) {
             int index = i;  // Appoint each Runnable a unique number where its rendered image will be inserted in the ImageView array.
             Runnable renderer = () -> {
-                File file = new File("./resources/images/regions/" + region.getRegionCode() + ".png");
+                File file = new File("./src/main/resources/images/regions/" + region.getRegionCode() + ".png");
                 ImageView image = MapGenerator.getColoredImage(
                         file, getColorFromRegions(region), new Dimension2D(300, 500));
                 images[index] = image;
