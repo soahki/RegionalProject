@@ -38,11 +38,11 @@ public class JDBCRunner {
 
             // Create region table
             statement.executeUpdate("DROP TABLE IF EXISTS regions");
-            statement.executeUpdate("CREATE TABLE regions(id INTEGER PRIMARY KEY, region_code STRING, name STRING)");
+            statement.executeUpdate("CREATE TABLE regions(region_code STRING PRIMARY KEY, name STRING)");
 
             // Create municipality table
             statement.executeUpdate("DROP TABLE IF EXISTS municipalities");
-            statement.executeUpdate("CREATE TABLE municipalities(id INTEGER PRIMARY KEY, region_code STRING, municipality_code STRING, name STRING)");
+            statement.executeUpdate("CREATE TABLE municipalities(municipality_code STRING PRIMARY KEY, region_code STRING, name STRING, FOREIGN KEY(region_code) REFERENCES regions(region_code))");
 
             // Fill tables with content
             for (Region region : localities.keySet()) {
