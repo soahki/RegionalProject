@@ -1,9 +1,6 @@
 package utilities;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class JDBCIO {
     private Connection connection;
@@ -31,8 +28,22 @@ public class JDBCIO {
         }
     }
 
-    public String getMunicipalityData(String municipalityCode) {
-        String result = "";
-        return result;
+    /**
+     * This method is used to create tables or insert data. Use SQL statements, not of type SELECT.
+     * @param sql String that adhers to SQL statement syntax.
+     * @throws SQLException
+     */
+    public void insert(String sql) throws SQLException {
+        statement.executeUpdate(sql);
+    }
+
+    /**
+     * This method retrieves data from database. Use SQL statements of type SELECT.
+     * @param sql String that adhers to SQL syntax.
+     * @return
+     * @throws SQLException
+     */
+    public ResultSet retrieve(String sql) throws SQLException {
+        return statement.executeQuery(sql);
     }
 }
