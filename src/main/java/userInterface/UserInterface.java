@@ -18,7 +18,9 @@ import utilities.filter.Filter;
 import utilities.MapGenerator;
 import utilities.filter.NumberOfMunicipalitiesFilter;
 import utilities.filter.StandardFilter;
+import utilities.filter.TotalPopulationFilter;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -71,7 +73,11 @@ public class UserInterface extends Application {
         GridPane grid = styleButtons(regionButtons);
 
         VBox vBox = new VBox(5);
-        vBox.getChildren().add(filter.getFilteredImages());
+        try {
+            vBox.getChildren().add(filter.getFilteredImages());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         vBox.getChildren().add(filterComboBox());
 
         hBox.getChildren().add(vBox);
@@ -81,10 +87,9 @@ public class UserInterface extends Application {
 
     private ComboBox filterComboBox() {
         ComboBox<Filter> filterComboBox = new ComboBox<>();
-        Filter filterItem = new NumberOfMunicipalitiesFilter(regionMap);
-        Filter standardItem = new StandardFilter();
-        filterComboBox.getItems().add(standardItem);
-        filterComboBox.getItems().add(filterItem);
+        filterComboBox.getItems().add(new StandardFilter());
+        filterComboBox.getItems().add(new NumberOfMunicipalitiesFilter(regionMap));
+        filterComboBox.getItems().add(new TotalPopulationFilter(regionMap));
         filterComboBox.setOnAction( event -> {
             filter = filterComboBox.getSelectionModel().getSelectedItem();
             String title = filterComboBox.getSelectionModel().getSelectedItem().toString();

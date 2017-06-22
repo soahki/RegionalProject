@@ -87,12 +87,8 @@ public class ParseTables {
                 System.out.println("...");
             }
 
-        } catch (FileNotFoundException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
-        }  catch (SQLException se) {
-            se.printStackTrace();
-        }  catch (IOException ie) {
-            ie.printStackTrace();
         }
     }
 
