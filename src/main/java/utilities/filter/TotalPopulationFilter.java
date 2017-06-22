@@ -69,7 +69,7 @@ public class TotalPopulationFilter implements Filter {
     private Color getColorFromRegions(Region region) {
         int red = 0;
         try {
-            red = numOfPeopleInRegion(region) / 1000;
+            red = numOfPeopleInRegion(region) / 7000;
             if (red > 255)
                 red = 255;
 
@@ -84,6 +84,7 @@ public class TotalPopulationFilter implements Filter {
         for (Municipality municipality : regionMap.get(region)) {
             total += numOfPeopleInMunicipality(municipality);
         }
+        System.out.println(total);
         return total;
     }
 
