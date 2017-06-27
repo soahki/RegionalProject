@@ -6,8 +6,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
-import utilities.MapGenerator;
-import utilities.filter.Filter;
+import ui.tools.MapGenerator;
 
 import java.io.File;
 import java.util.*;

@@ -16,7 +16,7 @@ import localities.Municipality;
 import localities.Region;
 import utilities.jdbc.Seeder;
 import utilities.filter.Filter;
-import utilities.MapGenerator;
+import ui.tools.MapGenerator;
 import utilities.filter.NumberOfMunicipalitiesFilter;
 import utilities.filter.StandardFilter;
 import utilities.filter.TotalPopulationFilter;
@@ -163,6 +163,11 @@ public class UserInterface extends Application {
             }
         }
         return gridPane;
+    }
+
+    // Add a statistics summary box
+    private HBox statisticsSummaryBox() {
+        return null;
     }
 
     public static void launchUI(String[] args) {

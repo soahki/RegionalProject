@@ -1,9 +1,6 @@
 package localities;
 
-/**
- * Created by abjor on 2017-05-02.
- */
-public class Municipality {
+public class Municipality implements Entity{
     private String name;
     private String municipalityCode;
     private String regionCode;
@@ -31,5 +28,15 @@ public class Municipality {
         return "Municipality{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public String getID() {
+        return municipalityCode;
+    }
+
+    @Override
+    public String getType() {
+        return "Municipality";
     }
 }

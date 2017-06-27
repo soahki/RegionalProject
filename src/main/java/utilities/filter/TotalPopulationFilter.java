@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
 import utilities.jdbc.IO;
-import utilities.MapGenerator;
+import ui.tools.MapGenerator;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -92,7 +92,6 @@ public class TotalPopulationFilter implements Filter {
         String query = "SELECT y2016 FROM population WHERE municipality_code = %s";
         String sql = String.format(query, municipality.getMunicipalityCode());
         ResultSet rs = io.retrieve(sql);
-
         return rs.getInt("y2016");
     }
 

@@ -1,4 +1,4 @@
-package utilities;
+package ui.tools;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;

@@ -1,6 +1,6 @@
 package localities;
 
-public class Region implements Comparable<Region> {
+public class Region implements Comparable<Region>, Entity {
     private String name;
     private String regionCode;
 
@@ -66,5 +66,15 @@ public class Region implements Comparable<Region> {
             }
             return this.getRegionCode().compareTo(o.getRegionCode());
         }
+    }
+
+    @Override
+    public String getID() {
+        return regionCode;
+    }
+
+    @Override
+    public String getType() {
+        return "Region";
     }
 }

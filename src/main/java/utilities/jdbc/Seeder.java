@@ -66,9 +66,8 @@ public class Seeder {
 
         Map<Region, List<Municipality>> regionMap = new HashMap<>();
 
-        try(Connection connection = DriverManager.getConnection("jdbc:sqlite:regionaldata.db")) {
-            Statement statement = connection.createStatement();
-
+        try {
+            Statement statement = getStatement();
             List<Region> regions = getRegions(statement);
             List<Municipality> municipalities = getMunicipalities(statement);
 
@@ -87,7 +86,18 @@ public class Seeder {
         return regionMap;
     }
 
-    private static List<Region> getRegions(Statement statement) throws SQLException {
+    public static Statement getStatement() {
+        Statement statement = null;
+        try {
+            Connection connection = DriverManager.getConnection("jdbc:sqlite:regionaldata.db");
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return statement;
+    }
+
+    public static List<Region> getRegions(Statement statement) throws SQLException {
         List<Region> regions = new ArrayList<>();
         ResultSet rs = statement.executeQuery("SELECT * FROM regions");
         while (rs.next()) {
@@ -98,7 +108,7 @@ public class Seeder {
         return regions;
     }
 
-    private static List<Municipality> getMunicipalities(Statement statement) throws SQLException {
+    public static List<Municipality> getMunicipalities(Statement statement) throws SQLException {
         List<Municipality> municipalities = new ArrayList<>();
         ResultSet rs = statement.executeQuery("SELECT * FROM municipalities");
         while (rs.next()) {

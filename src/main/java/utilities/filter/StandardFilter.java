@@ -1,7 +1,7 @@
 package utilities.filter;
 
 import javafx.scene.layout.StackPane;
-import utilities.MapGenerator;
+import ui.tools.MapGenerator;
 
 public class StandardFilter implements Filter {
     @Override

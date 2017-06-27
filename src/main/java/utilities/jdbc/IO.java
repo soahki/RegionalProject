@@ -46,4 +46,8 @@ public class IO {
     public ResultSet retrieve(String sql) throws SQLException {
         return statement.executeQuery(sql);
     }
+
+    public void close() throws SQLException {
+        connection.close();
+    }
 }
