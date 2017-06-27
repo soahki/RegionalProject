@@ -84,7 +84,6 @@ public class TotalPopulationFilter implements Filter {
         for (Municipality municipality : regionMap.get(region)) {
             total += numOfPeopleInMunicipality(municipality);
         }
-        System.out.println(total);
         return total;
     }
 

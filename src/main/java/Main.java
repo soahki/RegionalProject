@@ -1,6 +1,4 @@
-import userInterface.UserInterface;
-import utilities.JDBCRunner;
-import utilities.ParseTables;
+import ui.UserInterface;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException {

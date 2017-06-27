@@ -1,4 +1,4 @@
-package userInterface;
+package ui;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -6,11 +6,12 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import localities.AdministrativeZones;
 import localities.Municipality;
 import localities.Region;
 import utilities.JDBCRunner;
@@ -67,24 +68,39 @@ public class UserInterface extends Application {
     }
 
     private Scene getRegionScene() {
-        HBox hBox = new HBox(5);
+        HBox hBoxOverallUI = new HBox(5);
+        VBox vBoxLeftUI = new VBox(5);
+        VBox vBoxCenterUI = new VBox(5);
+        VBox vBoxRightUI = new VBox(5);
 
         Button[] regionButtons = regionButtons();
         GridPane grid = styleButtons(regionButtons);
 
-        VBox vBox = new VBox(5);
+        // Set left side UI
         try {
-            vBox.getChildren().add(filter.getFilteredImages());
+            vBoxLeftUI.getChildren().add(filter.getFilteredImages());
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        vBox.getChildren().add(filterComboBox());
+        vBoxLeftUI.getChildren().add(filterComboBox());
 
-        hBox.getChildren().add(vBox);
-        hBox.getChildren().add(grid);
-        return new Scene(hBox);
+        // Set center UI
+        vBoxCenterUI.getChildren().add(grid);
+
+        // Set right side UI
+        Label lblStats = new Label("Statistics");
+        Slider sldPresentTopStats = new Slider(0, 100, 10);
+        vBoxRightUI.getChildren().add(lblStats);
+        vBoxRightUI.getChildren().add(sldPresentTopStats);
+
+        // Set overall UI to hBox.
+        hBoxOverallUI.getChildren().add(vBoxLeftUI);
+        hBoxOverallUI.getChildren().add(vBoxCenterUI);
+        hBoxOverallUI.getChildren().add(vBoxRightUI);
+        return new Scene(hBoxOverallUI);
     }
 
+    // Here in lies all the filters for the map presentation
     private ComboBox filterComboBox() {
         ComboBox<Filter> filterComboBox = new ComboBox<>();
         filterComboBox.getItems().add(new StandardFilter());
