@@ -1,10 +1,11 @@
 package utilities;
 
 import org.junit.Test;
+import utilities.jdbc.Seeder;
 
 import static org.junit.Assert.*;
 
-public class JDBCRunnerTest {
+public class SeederTest {
 
     @Test
     public void classIsFound() throws Exception {
@@ -13,7 +14,7 @@ public class JDBCRunnerTest {
 
         // run
         try {
-            JDBCRunner.start();
+            Seeder.start();
         } catch (ClassNotFoundException ex) {
             success = false;
         }

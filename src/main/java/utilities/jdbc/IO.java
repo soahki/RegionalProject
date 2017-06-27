@@ -1,14 +1,14 @@
-package utilities;
+package utilities.jdbc;
 
 import java.sql.*;
 
-public class JDBCIO {
+public class IO {
     private Connection connection;
     private Statement statement;
     private final static String DATABASE_CLASS = "org.sqlite.JDBC";
     private final static String DATABASE_SOURCE = "jdbc:sqlite:regionaldata.db";
 
-    public JDBCIO() {
+    public IO() {
         try {
             connect();
         } catch (ClassNotFoundException e) {

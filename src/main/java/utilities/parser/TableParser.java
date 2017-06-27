@@ -1,12 +1,14 @@
-package utilities;
+package utilities.parser;
+
+import utilities.jdbc.IO;
 
 import java.io.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParseTables {
-    private static JDBCIO io;
+public class TableParser {
+    private static IO io;
 
     /**
      * municipality_code as foreign key
@@ -36,7 +38,7 @@ public class ParseTables {
                 i++;
             }
 
-            JDBCIO io = new JDBCIO();
+            IO io = new IO();
 
             // Create a sql statement for creating a table
             String createTable = "CREATE TABLE " + tablename;

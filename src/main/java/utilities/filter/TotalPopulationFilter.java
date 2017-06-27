@@ -6,7 +6,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
-import utilities.JDBCIO;
+import utilities.jdbc.IO;
 import utilities.MapGenerator;
 
 import java.io.File;
@@ -88,7 +88,7 @@ public class TotalPopulationFilter implements Filter {
     }
 
     private int numOfPeopleInMunicipality(Municipality municipality) throws SQLException {
-        JDBCIO io = new JDBCIO();
+        IO io = new IO();
         String query = "SELECT y2016 FROM population WHERE municipality_code = %s";
         String sql = String.format(query, municipality.getMunicipalityCode());
         ResultSet rs = io.retrieve(sql);

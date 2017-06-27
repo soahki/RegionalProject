@@ -2,15 +2,16 @@ package localities;
 
 import org.junit.Before;
 import org.junit.Test;
+import utilities.parser.TextParser;
 
 import static org.junit.Assert.*;
 
-public class AdministrativeZonesTest {
-    private AdministrativeZones zones;
+public class TextParserTest {
+    private TextParser zones;
 
     @Before
     public void setUp() throws Exception {
-        zones = new AdministrativeZones();
+        zones = new TextParser();
     }
 
     @Test

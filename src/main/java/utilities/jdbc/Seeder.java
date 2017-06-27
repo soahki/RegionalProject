@@ -1,6 +1,6 @@
-package utilities;
+package utilities.jdbc;
 
-import localities.AdministrativeZones;
+import utilities.parser.TextParser;
 import localities.Municipality;
 import localities.Region;
 
@@ -10,7 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JDBCRunner {
+/**
+ * Only utilize this class if no database is yet initialized.
+ */
+public class Seeder {
     public static void start() throws ClassNotFoundException{
         Class.forName("org.sqlite.JDBC");
 
@@ -28,7 +31,7 @@ public class JDBCRunner {
     }
 
     public static void seedDatabase() throws ClassNotFoundException {
-        Map<Region, List<Municipality>> localities = new AdministrativeZones().getRegionMap();
+        Map<Region, List<Municipality>> localities = new TextParser().getRegionMap();
 
         Class.forName("org.sqlite.JDBC");
         try(Connection connection = DriverManager.getConnection("jdbc:sqlite:regionaldata.db")) {
