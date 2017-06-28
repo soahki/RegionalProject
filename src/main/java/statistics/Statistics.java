@@ -1,16 +1,15 @@
 package statistics;
 
-import localities.Entity;
 
 import java.util.*;
 
 public class Statistics {
     private String name;
-    private Map<Entity, Double> statisticsMap;
-    private Map<Double, Entity> valuesMap;
+    private Map<Object, Double> statisticsMap;
+    private Map<Double, Object> valuesMap;
     private List<Double> valueList;
 
-    public Statistics(String name, Map<Entity, Double> statisticsMap) {
+    public Statistics(String name, Map<Object, Double> statisticsMap) {
         this.name = name;
         this.statisticsMap = statisticsMap;
         initializeValues();
@@ -19,8 +18,8 @@ public class Statistics {
 
     private void initializeValues() {
         valuesMap = new HashMap<>();
-        for (Entity entity : statisticsMap.keySet()) {
-            valuesMap.put(statisticsMap.get(entity), entity);
+        for (Object object : statisticsMap.keySet()) {
+            valuesMap.put(statisticsMap.get(object), object);
         }
         valueList = new ArrayList<>(valuesMap.keySet());
         Collections.sort(valueList);
@@ -31,8 +30,7 @@ public class Statistics {
         for (double value : valueList) {
             sumDev += Math.pow((value - getMean()), 2);
         }
-        double stdDev = Math.sqrt(sumDev / getN());
-        return stdDev;
+        return Math.sqrt(sumDev / getN());
     }
 
     public double getMin() {
@@ -69,8 +67,8 @@ public class Statistics {
      */
     public double getSum() {
         double sum = 0;
-        for (Entity entity : statisticsMap.keySet()) {
-            sum += statisticsMap.get(entity);
+        for (Object object : statisticsMap.keySet()) {
+            sum += statisticsMap.get(object);
         }
         return sum;
     }
@@ -86,11 +84,11 @@ public class Statistics {
         return name;
     }
 
-    public Map<Entity, Double> getStatisticsMap() {
+    public Map<Object, Double> getStatisticsMap() {
         return statisticsMap;
     }
 
-    public Map<Double, Entity> getValuesMap() {
+    public Map<Double, Object> getValuesMap() {
         return valuesMap;
     }
 }

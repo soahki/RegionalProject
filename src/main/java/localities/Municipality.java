@@ -1,6 +1,6 @@
 package localities;
 
-public class Municipality implements Entity{
+public class Municipality implements Entity {
     private String name;
     private String municipalityCode;
     private String regionCode;

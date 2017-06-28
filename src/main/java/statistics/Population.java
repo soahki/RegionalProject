@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Population {
-    private static Map<Entity, Double> popMap = new HashMap<>();
+    private static Map<Object, Double> popMap = new HashMap<>();
 
     public static Statistics getStatistics() {
-        List<Municipality> municipalities = null;
+        List<Municipality> municipalities;
         try {
             municipalities = Seeder.getMunicipalities(Seeder.getStatement());
 
