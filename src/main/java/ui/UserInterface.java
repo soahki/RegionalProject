@@ -4,16 +4,15 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import localities.Municipality;
 import localities.Region;
+import statistics.Quantifiable;
+import statistics.Statistics;
 import utilities.jdbc.Seeder;
 import utilities.filter.Filter;
 import ui.tools.MapGenerator;
@@ -26,13 +25,19 @@ import java.util.List;
 import java.util.Map;
 
 public class UserInterface extends Application {
-    private static Map<Region, List<Municipality>> regionMap;
+    private static Map<Region, List<Municipality>> regionMap;  // Sorted municipality according to its county/region
     private static final double BUTTON_WIDTH = 120;
     private static final double BUTTON_HEIGHT = 50;
 
+    private String statisticsTitle;
     private Stage primaryStage;
-    private Filter filter = new StandardFilter();
+    private Filter filter = new StandardFilter();   // Default filter, Filter being the way the map image is being rendered.
 
+    /**
+     * Method as part of UserInterface being subclass of Application.
+     * @param primaryStage, the stage being part of the default scene.
+     * @throws Exception
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         regionMap = Seeder.getMap();
@@ -40,12 +45,22 @@ public class UserInterface extends Application {
         displayScene("Regioner i Sverige", getRegionScene());
     }
 
+    /**
+     * Method to call when scene is to be changed.
+     * @param title String, to be displayed on frame
+     * @param scene Scene, to be displayed in frame
+     */
     private void displayScene(String title, Scene scene) {
         primaryStage.setTitle(title);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    /**
+     * Method to produce a Scene with municipalities of a region/county.
+     * @param region Region, the key to access the accompanying municipalities.
+     * @return Scene to be displayed.
+     */
     private Scene getMunicipalityScene(Region region) {
         Group branch = new Group();
         HBox hBox = new HBox(5);
@@ -68,6 +83,10 @@ public class UserInterface extends Application {
         return new Scene(branch);
     }
 
+    /**
+     * Method to produce a Scene with regions.
+     * @return Scene to be displayed.
+     */
     private Scene getRegionScene() {
         HBox hBoxOverallUI = new HBox(5);
         VBox vBoxLeftUI = new VBox(5);
@@ -83,16 +102,20 @@ public class UserInterface extends Application {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        vBoxLeftUI.getChildren().add(filterComboBox());
+        vBoxLeftUI.setPadding(new Insets(5));
 
         // Set center UI
-        vBoxCenterUI.getChildren().add(grid);
-
-        // Set right side UI
         Label lblStats = new Label("Statistics");
         Slider sldPresentTopStats = new Slider(0, 100, 10);
-        vBoxRightUI.getChildren().add(lblStats);
-        vBoxRightUI.getChildren().add(sldPresentTopStats);
+        vBoxCenterUI.getChildren().add(lblStats);
+        vBoxCenterUI.getChildren().add(sldPresentTopStats);
+        vBoxCenterUI.getChildren().add(statisticsSummaryBox((Quantifiable)filter));
+        vBoxCenterUI.getChildren().add(filterComboBox());
+        vBoxCenterUI.setPrefWidth(250);
+        vBoxCenterUI.setPadding(new Insets(5));
+
+        // Set right side UI
+        vBoxRightUI.getChildren().add(grid);
 
         // Set overall UI to hBox.
         hBoxOverallUI.getChildren().add(vBoxLeftUI);
@@ -112,8 +135,10 @@ public class UserInterface extends Application {
             String title = filterComboBox.getSelectionModel().getSelectedItem().toString();
             displayScene(title, getRegionScene());
         });
+
         return filterComboBox;
     }
+
 
     private Button[] regionButtons() {
         Button[] buttons = new Button[regionMap.keySet().size()];
@@ -141,12 +166,17 @@ public class UserInterface extends Application {
         return buttons;
     }
 
+    /**
+     * Method to style buttons in a GridPane.
+     * @param buttons Button[] will be ordered in a GridPane.
+     * @return GridPane including Button[] according to style set.
+     */
     private GridPane styleButtons(Button[] buttons) {
         // Initialize GridPane instance
         GridPane gridPane = new GridPane();
 
         // Set basic style
-        gridPane.setStyle("-fx-background-color: #ABABAB");
+        // gridPane.setStyle("-fx-background-color: #ABABAB");
         gridPane.setPadding(new Insets(5));
         gridPane.setHgap(5);
         gridPane.setVgap(5);
@@ -166,8 +196,22 @@ public class UserInterface extends Application {
     }
 
     // Add a statistics summary box
-    private HBox statisticsSummaryBox() {
-        return null;
+    private VBox statisticsSummaryBox(Quantifiable quantifiable) {
+        Statistics stats = new Statistics(quantifiable.toString(), quantifiable.getStatistics());
+        VBox vBox = new VBox();
+        Label lblHeading = new Label("Statistics: " + stats.getName());
+
+        String sb = "Minimum: " + String.format("%.2f%n", stats.getMin()) +
+                "Maximum: " + String.format("%.2f%n", stats.getMax()) +
+                "Median: " + String.format("%.2f%n", stats.getMedian()) +
+                "Mean: " + String.format("%.2f%n", stats.getMean()) +
+                "Sum: " + String.format("%.2f%n", stats.getSum()) +
+                "StdDev: " + String.format("%.2f%n", stats.getStdDev());
+
+        TextArea statsArea = new TextArea(sb);
+        vBox.getChildren().add(lblHeading);
+        vBox.getChildren().add(statsArea);
+        return vBox;
     }
 
     public static void launchUI(String[] args) {

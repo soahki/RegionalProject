@@ -48,7 +48,10 @@ public class Statistics {
             median = valueList.get(medianIndex);
         } else {
             double medianOne = valueList.get(medianIndex);
-            double medianTwo = valueList.get(medianIndex + 1);
+            double medianTwo = valueList.get(medianIndex);
+            if (valueList.size() > medianIndex + 1) {
+                medianTwo = valueList.get(medianIndex + 1);
+            }
             median = (medianOne + medianTwo) / 2;
         }
 

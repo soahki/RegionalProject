@@ -5,8 +5,11 @@ import ui.UserInterface;
 
 public class Main {
     public static void main(String[] args) throws ClassNotFoundException {
-        // UserInterface.launchUI(args);
+        UserInterface.launchUI(args);
 
+
+        // TESTING STATISTICS AND POPULATION CLASSES
+        /*
         Statistics stats = Population.getStatistics();
         Object minObj = stats.getValuesMap().get(stats.getMin());
         String minName = null;
@@ -26,6 +29,7 @@ public class Main {
         System.out.printf("Sum: %d%n", (int)stats.getSum());
         System.out.printf("StdDev: %.2f%n", stats.getStdDev());
         System.out.printf("Cases: %d%n", (int)stats.getN());
+        */
 
     }
 }

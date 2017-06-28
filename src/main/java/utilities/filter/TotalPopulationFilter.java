@@ -6,16 +6,18 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
+import statistics.Quantifiable;
 import utilities.jdbc.IO;
 import ui.tools.MapGenerator;
 
 import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TotalPopulationFilter implements Filter {
+public class TotalPopulationFilter implements Filter, Quantifiable {
     private Map<Region, List<Municipality>> regionMap;
 
     public TotalPopulationFilter(Map<Region, List<Municipality>> regionMap) {
@@ -97,6 +99,19 @@ public class TotalPopulationFilter implements Filter {
 
     @Override
     public String toString() {
-        return "Filter: Befolkning";
+        return "Number of inhabitants in region";
+    }
+
+    @Override
+    public Map<Object, Double> getStatistics() {
+        Map<Object, Double> statisticsMap = new HashMap<>();
+        try {
+            for (Region region : regionMap.keySet()) {
+                statisticsMap.put(region, (double) numOfPeopleInRegion(region));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return statisticsMap;
     }
 }

@@ -6,12 +6,13 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import localities.Municipality;
 import localities.Region;
+import statistics.Quantifiable;
 import ui.tools.MapGenerator;
 
 import java.io.File;
 import java.util.*;
 
-public class NumberOfMunicipalitiesFilter implements Filter {
+public class NumberOfMunicipalitiesFilter implements Filter, Quantifiable {
     private Map<Region, List<Municipality>> regionMap;
 
     public NumberOfMunicipalitiesFilter(Map<Region, List<Municipality>> regionMap) {
@@ -71,6 +72,16 @@ public class NumberOfMunicipalitiesFilter implements Filter {
 
     @Override
     public String toString() {
-        return "Filter: Antal kommuner i ett län";
+        return "Municipalities in region";
+    }
+
+    @Override
+    public Map<Object, Double> getStatistics() {
+        Map<Object, Double> statisticsMap = new HashMap<>();
+        for (Region region : regionMap.keySet()) {
+            Double num = (double)(regionMap.get(region).size());
+            statisticsMap.put(region, num);
+        }
+        return statisticsMap;
     }
 }
