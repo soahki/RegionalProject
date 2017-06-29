@@ -208,6 +208,7 @@ public class UserInterface extends Application {
                 "Sum: " + String.format("%.2f%n", stats.getSum()) +
                 "StdDev: " + String.format("%.2f%n", stats.getStdDev());
 
+
         TextArea statsArea = new TextArea(sb);
         vBox.getChildren().add(lblHeading);
         vBox.getChildren().add(statsArea);
